@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Packaging
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local configuration and secrets
+.env
+.env.*
+*.env
+*.local
+/secrets.*
+/*.secrets.*
+*.dpapi.json
+telealert.local.*
+
+# Editor and OS noise
+.idea/
+.vscode/
+Thumbs.db
+Desktop.ini
