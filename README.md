@@ -2,6 +2,14 @@
 
 `telealert` is a Windows-first CLI that sends Telegram alerts from any shell using credentials stored in the OS credential store.
 
+## Why telealert?
+
+`telealert` is for quick command-line notifications without putting a Telegram bot token in config files, shell history, scripts, or logs.
+Unlike many small Telegram helpers, it stores the token in the system keyring and only offers a Windows DPAPI fallback after an explicit warning.
+Tools like `telegram-send` are useful, but their setup commonly revolves around local config files; `telealert` keeps the secret outside the project by default.
+Services like `ntfy` are excellent for general push notifications, but they use a different service/topic model rather than your own Telegram bot and chat.
+The result is a small, boring CLI that is easy to call from builds, scripts, shells, and automation while keeping credential handling explicit.
+
 ```cmd
 telealert Aufgabe wurde erledigt
 telealert --title "Build" "Tests bestanden"
@@ -35,7 +43,13 @@ python -m pipx ensurepath
 Close and reopen PowerShell or CMD after `ensurepath`, then install `telealert` from the repository:
 
 ```powershell
-pipx install C:\Users\Marcel\Documents\telealert
+pipx install git+https://github.com/horbachM-cpu/telealert.git
+```
+
+For a local checkout, run this from the repository root instead:
+
+```powershell
+pipx install .
 ```
 
 After that, `telealert` should work from any directory:
@@ -43,12 +57,6 @@ After that, `telealert` should work from any directory:
 ```powershell
 telealert --help
 telealert status
-```
-
-On this machine the installed command lives at:
-
-```text
-C:\Users\Marcel\.local\bin\telealert.exe
 ```
 
 If a terminal was already open before installation, open a new terminal before testing `telealert`.
@@ -68,7 +76,7 @@ pipx uninstall telealert
 Alternative without `pipx`:
 
 ```powershell
-python -m pip install --user C:\Users\Marcel\Documents\telealert
+python -m pip install --user .
 ```
 
 If PowerShell cannot find `telealert` after a `--user` install, add Python's user Scripts directory to `PATH`. `pipx ensurepath` handles this automatically for the recommended install.
